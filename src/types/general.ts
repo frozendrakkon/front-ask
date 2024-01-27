@@ -1,6 +1,6 @@
 export type ask = {
     id: number
     ask: string
-    theme:  'js' | 'html' | 'css' | 'task' | 'hr' | 'vue' | 'ts' | 'other',
+    theme:  'js' | 'html' | 'code' | 'hr' | 'vue' | 'ts',
     level: 1 | 2 | 3
 }
