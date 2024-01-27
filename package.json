@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "pinia": "^2.1.7",
+    "sass": "^1.70.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
@@ -23,6 +24,7 @@
     "@vitejs/plugin-vue": "^4.4.0",
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
+    "@vue/runtime-dom": "^3.4.15",
     "@vue/tsconfig": "^0.4.0",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
