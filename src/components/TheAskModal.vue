@@ -27,7 +27,7 @@
 
     .ask {
         color: #000;
-        font-family: Manrope;
+        font-family: 'Manrope';
         font-size: 20px;
         font-weight: 600;
         word-wrap: break-word;
