@@ -361,4 +361,274 @@ const jsAsk: Array<ask> = [
         ask: 'Можем ли мы сделать symbol с двумя одинаковыми именами единой сущностью?',
         level: 3
     },
+    {
+        id: 61,
+        theme: 'js',
+        ask: 'как преобразуется объект при математических операциях?',
+        level: 3
+    },
+    {
+        id: 62,
+        theme: 'js',
+        ask: 'можем ли мы повлиять на преобразование объекта?',
+        level: 3
+    },
+    {
+        id: 63,
+        theme: 'js',
+        ask: 'Что такое this/контекст?',
+        level: 2
+    },
+    {
+        id: 64,
+        theme: 'js',
+        ask: 'call, apply, bind, для чего они нужны? в чем их разница?',
+        level: 2
+    },
+    {
+        id: 65,
+        theme: 'js',
+        ask: 'Как работает прототипное наследование в js?',
+        level: 2
+    },
+    {
+        id: 66,
+        theme: 'js',
+        ask: 'В чем разница между __proto__ и prototype?',
+        level: 3
+    },
+    {
+        id: 67,
+        theme: 'js',
+        ask: 'В чем отличие forEach от map?',
+        level: 1
+    },
+    {
+        id: 68,
+        theme: 'js',
+        ask: 'В чем разница между переменной , которая является: null, undefined?',
+        level: 1
+    },
+    {
+        id: 69,
+        theme: 'js',
+        ask: 'Что вы можете рассказать о  переменной объявленной без var/let/const?',
+        level: 2
+    },
+    {
+        id: 70,
+        theme: 'js',
+        ask: 'В чем разница между объектами хоста и собственными объектами?',
+        level: 2
+    },
+    {
+        id: 71,
+        theme: 'js',
+        ask: 'Что такое тернарный оператор, почему он так называется',
+        level: 1
+    },
+    {
+        id: 72,
+        theme: 'js',
+        ask: 'Объясните разницу между синхронными и асинхронными функциями',
+        level: 1
+    },
+    {
+        id: 73,
+        theme: 'js',
+        ask: 'что такое функции высшего порядка?',
+        level: 2
+    },
+    {
+        id: 74,
+        theme: 'js',
+        ask: 'что такое promise?',
+        level: 1
+    },
+    {
+        id: 75,
+        theme: 'js',
+        ask: 'Как называются внутренние состояния Promise?',
+        level: 2
+    },
+    {
+        id: 76,
+        theme: 'js',
+        ask: 'Расскажите о методах Promise',
+        level: 1
+    },
+    {
+        id: 77,
+        theme: 'js',
+        ask: 'Что вы можете рассказать про асинхронность?',
+        level: 2
+    },
+    {
+        id: 78,
+        theme: 'js',
+        ask: 'Что такое Async/Await',
+        level: 1
+    },
+    {
+        id: 79,
+        theme: 'js',
+        ask: 'Что происходит с массивами, когда мы пытаемся их сложить?',
+        level: 2
+    },
+    {
+        id: 80,
+        theme: 'js',
+        ask: 'Почему js не может работать напрямую с памятью компьютера?',
+        level: 2
+    },
+    {
+        id: 81,
+        theme: 'js',
+        ask: 'Что происходит, когда мы вводим url в адресную строку и нажимаем enter?',
+        level: 2
+    },
+    {
+        id: 82,
+        theme: 'js',
+        ask: 'Что приходит с сервера первым html/css/js или все вместе?',
+        level: 2
+    },
+    {
+        id: 83,
+        theme: 'js',
+        ask: 'В чем отличия неопределенной переменной и необъявленной?',
+        level: 1
+    },
+    {
+        id: 84,
+        theme: 'js',
+        ask: 'Почему мы можем обратиться к свойству примитивного типа, ведь это примитив?',
+        level: 2
+    },
+    {
+        id: 85,
+        theme: 'js',
+        ask: 'Как проверить число на NaN?',
+        level: 2
+    },
+    {
+        id: 86,
+        theme: 'js',
+        ask: 'Как работает eventLoop?',
+        level: 2
+    },
+    {
+        id: 87,
+        theme: 'js',
+        ask: 'Что вы можете рассказать о генераторах и итераторах?',
+        level: 2
+    },
+    {
+        id: 88,
+        theme: 'js',
+        ask: 'Что такое Map и Set?',
+        level: 2
+    },
+    {
+        id: 89,
+        theme: 'js',
+        ask: 'Что такое webPack, какой опыт работы с ним вы имеете?',
+        level: 2
+    },
+    {
+        id: 90,
+        theme: 'js',
+        ask: 'Сколько прототипов может иметь объект?',
+        level: 3
+    },
+    {
+        id: 91,
+        theme: 'js',
+        ask: 'Что такое ошибка cors, способы обхода?',
+        level: 2
+    },
+    {
+        id: 92,
+        theme: 'js',
+        ask: 'Что такое CDN?',
+        level: 2
+    },
+    {
+        id: 93,
+        theme: 'js',
+        ask: 'Что такое модель OSI? Модель OSI',
+        level: 3
+    },
+    {
+        id: 94,
+        theme: 'js',
+        ask: 'Что такое сервис-воркер?',
+        level: 2
+    },
+    {
+        id: 95,
+        theme: 'js',
+        ask: 'что такое веб-воркеры?',
+        level: 2
+    },
+    {
+        id: 96,
+        theme: 'js',
+        ask: 'Что такое GateWay и Backend-for-Frontend?',
+        level: 3
+    },
+    {
+        id: 97,
+        theme: 'js',
+        ask: 'Что такое SSE?',
+        level: 2
+    },
+    {
+        id: 98,
+        theme: 'js',
+        ask: 'Что такое Web-socket?',
+        level: 2
+    },
+    {
+        id: 99,
+        theme: 'js',
+        ask: 'Что такое TLS (SSL)',
+        level: 3
+    },
+    {
+        id: 100,
+        theme: 'js',
+        ask: 'Что за метод Object.create()?',
+        level: 2
+    },
+    {
+        id: 101,
+        theme: 'js',
+        ask: 'Что за метод Object.assign(target, source1, source2 ...)?',
+        level: 2
+    },
+    {
+        id: 102,
+        theme: 'js',
+        ask: 'Что за метод Object.prototype.hasOwnProperty()?',
+        level: 2
+    },
+    {
+        id: 103,
+        theme: 'js',
+        ask: 'Что за метод Array.flat()?',
+        level: 2
+    },
+    {
+        id: 104,
+        theme: 'js',
+        ask: 'Как мы можем копировать глубоко объект?',
+        level: 2
+    },
+    {
+        id: 105,
+        theme: 'js',
+        ask: 'Что произойдет, если мы попытаемся скопировать глубоко вложенный объект, через Object.Assign()',
+        level: 2
+    },
 ]
