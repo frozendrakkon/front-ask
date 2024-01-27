@@ -7,7 +7,7 @@
             </div>
             <div class="favorite">
                 <span>В избранное</span>
-                <img src="@/assets/image/star.svg">
+                <img src="@/assets/images/star.svg">
             </div>
         </div>
         <div class="ask">Как можно узнать, равно ли значение переменной NaN?</div>

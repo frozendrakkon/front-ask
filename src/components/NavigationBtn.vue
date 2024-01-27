@@ -1,6 +1,6 @@
 <template>
     <div class="navigation-btn">
-        <img src="@/assets/image/arrow.svg">
+        <img src="@/assets/images/arrow.svg">
     </div>
 </template>
 
