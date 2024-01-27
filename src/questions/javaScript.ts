@@ -632,3 +632,5 @@ const jsAsk: Array<ask> = [
         level: 2
     },
 ]
+
+export default jsAsk
