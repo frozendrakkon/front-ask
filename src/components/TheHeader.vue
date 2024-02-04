@@ -11,7 +11,7 @@
     justify-content: space-between;
 
     &__favorite {
-        font-family: Inter;
+        font-family: 'Inter';
         font-size: 18px;
         font-weight: 400;
         color: #333;

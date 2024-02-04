@@ -39,7 +39,8 @@
     &__theme, &__level {
         font-size: 16px;
         color: #828282;
-        font-family: Inter;
+        font-family: 'Inter';
+        font-weight: 400;
     }
     div:nth-child(n + 2) {
         margin-left: 10px;
@@ -48,7 +49,7 @@
 .favorite {
     color: #2a73d2;
     font-size: 16px;
-    font-family: Manrope;
+    font-family: 'Manrope';
     display: flex;
     align-items: center;
     img {
