@@ -5,10 +5,13 @@ import TheAskModal from '@/components/TheAskModal.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
 import BaseBtn from '@/components/BaseBtn.vue';
 import SettingsItem from '@/components/SettingsItem.vue'
-import { type TItem } from '@/types/index';
-// import { useCounterStore } from '@/store/questions'
+import { type TLevelValue, type TThemeValue, type TLevel, type TTheme } from '@/types/index';
+import { useQuestionsStore } from '@/store/questions'
 
-const levelItems: Array<TItem> = reactive([
+
+const store = useQuestionsStore()
+
+const levels: TLevel[] = reactive([
     {
         text: 'Junior',
         value: '1',
@@ -28,7 +31,7 @@ const levelItems: Array<TItem> = reactive([
         type: 'level'
     }
 ])
-const themes: Array<TItem> = reactive([
+const themes: TTheme[] = reactive([
     {
         text: 'HTML',
         value: 'html',
@@ -55,17 +58,22 @@ const themes: Array<TItem> = reactive([
     }
 ])
 
-// const store = useCounterStore()
+function getChecked(items: Array<TLevel | TTheme>): Array<TLevelValue | TThemeValue> {
+    return items.reduce((acc: Array<TLevelValue | TThemeValue>, item) => {
+        if (item.checked) acc.push(item.value)
+        return acc
+    }, [])
+}
 
-function acceptSettings () {
-    const checkedLevels = (toRaw(levelItems)).filter(item => item.checked)
-    const checkedThemes = (toRaw(themes)).filter(item => item.checked)
+function acceptSettings() {
+    const checkedLevels = getChecked((toRaw(levels)))
+    const checkedThemes = getChecked((toRaw(themes)))
 
-    console.log(checkedThemes)
+    store.collectAsks(checkedLevels as TLevelValue[], checkedThemes as TThemeValue[])
 }
 
 function clickNavigation(direction: 'prev' | 'next') {
-
+    store.changeCurrentAsk(direction)
 }
 
 </script>
@@ -74,16 +82,16 @@ function clickNavigation(direction: 'prev' | 'next') {
     <defaultLayout>
         <div class="settings-ask">
             <div class="settings-ask__settings">
-                <SettingsItem :items="levelItems" text="Уровень:" />
+                <SettingsItem :items="levels" text="Уровень:" />
                 <SettingsItem :items="themes" text="Тема:" />
             </div>
-            <BaseBtn text="Применить" @on-click-btn="acceptSettings"/>
+            <BaseBtn text="Применить" @on-click-btn="acceptSettings" />
         </div>
         <div class="ask-block">
             <TheAskModal class="ask-block__modal" />
             <div class="ask-block__navigation">
-                <NavigationBtn @on-click-btn="clickNavigation('prev')"/>
-                <NavigationBtn @on-click-btn="clickNavigation('next')"/>
+                <NavigationBtn @on-click-btn="clickNavigation('prev')" />
+                <NavigationBtn @on-click-btn="clickNavigation('next')" />
             </div>
 
         </div>
@@ -95,8 +103,9 @@ function clickNavigation(direction: 'prev' | 'next') {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     &__settings {
-        & > :nth-child(2) {
+        &> :nth-child(2) {
             margin-top: 20px;
         }
     }
@@ -120,4 +129,5 @@ function clickNavigation(direction: 'prev' | 'next') {
             transform: rotate(180deg);
         }
     }
-}</style>@/types
+}
+</style>

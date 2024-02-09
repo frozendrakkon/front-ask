@@ -5,6 +5,10 @@ const store = useQuestionsStore()
 
 const {  currentAsk } = storeToRefs(store)
 
+function clickAddFavorite() {
+    defineEmits(['addFavorite'])
+}
+
 </script>
 
 
@@ -15,12 +19,12 @@ const {  currentAsk } = storeToRefs(store)
                 <div class="about-task__theme">JS</div>
                 <div class="about-task__level">Junior</div>
             </div>
-            <div class="favorite">
+            <div class="favorite" @click="clickAddFavorite">
                 <span>В избранное</span>
                 <img src="@/assets/images/star.svg">
             </div>
         </div>
-        <div class="ask">{{ currentAsk.ask }}</div>
+        <div class="ask">{{ currentAsk?.ask || 'Выберите уровень и темы' }}</div>
     </div>
 </template>
 

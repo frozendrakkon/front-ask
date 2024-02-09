@@ -1,13 +1,19 @@
 export type ask = {
     id: number
     ask: string
-    theme:  'js' | 'html' | 'code' | 'hr' | 'vue' | 'ts',
+    theme: 'js' | 'html' | 'code' | 'hr' | 'vue' | 'ts',
     level: 1 | 2 | 3
 }
 
-export type TItem = {
+type GItem<value, type> = {
     text: string
-    value: string
+    value: value
     checked: boolean
-    type: 'level' | 'theme'
+    type: type
 }
+
+export type TLevel = GItem<('1' | '2' | '3'), 'level'>
+export type TTheme = GItem<('js' | 'html' | 'code' | 'hr' | 'vue' | 'ts'), 'theme'>
+
+export type TLevelValue = '1' | '2' | '3'
+export type TThemeValue = 'js' | 'html' | 'code' | 'hr' | 'vue' | 'ts'

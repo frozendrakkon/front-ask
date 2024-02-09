@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TItem } from '@/types/index';
+import { TLevel, TTheme } from '@/types/index';
 import { PropType } from 'vue';
 
 defineProps({
@@ -8,12 +8,12 @@ defineProps({
         required: true
     },
     items: {
-        type: Object as PropType<Array<TItem>>,
+        type: Object as PropType<Array<TLevel | TTheme>>,
         required: true
     }
 })
 
-function clickItem(item: TItem) {
+function clickItem(item: TLevel | TTheme) {
     item.checked = !item.checked
 }
 
