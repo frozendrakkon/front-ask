@@ -1,8 +1,16 @@
 <template>
-    <div class="navigation-btn">
+    <div class="navigation-btn" @click="onClickBtn">
         <img src="@/assets/images/arrow.svg">
     </div>
 </template>
+
+<script setup lang="ts">
+const emit = defineEmits(['onClickBtn'])
+
+function onClickBtn() {
+    emit('onClickBtn')
+}
+</script>
 
 <style lang="scss" scoped>
 .navigation-btn {

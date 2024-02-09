@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, toRaw } from 'vue'
 import defaultLayout from '@/layouts/defaultLayout.vue'
 import TheAskModal from '@/components/TheAskModal.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
 import BaseBtn from '@/components/BaseBtn.vue';
 import SettingsItem from '@/components/SettingsItem.vue'
-import { TItems } from '@/types/general';
+import { type TItem } from '@/types/index';
+// import { useCounterStore } from '@/store/questions'
 
-const levelItems: Array<TItems> = reactive([
+const levelItems: Array<TItem> = reactive([
     {
         text: 'Junior',
         value: '1',
@@ -27,7 +28,7 @@ const levelItems: Array<TItems> = reactive([
         type: 'level'
     }
 ])
-const themes: Array<TItems> = reactive([
+const themes: Array<TItem> = reactive([
     {
         text: 'HTML',
         value: 'html',
@@ -54,6 +55,18 @@ const themes: Array<TItems> = reactive([
     }
 ])
 
+// const store = useCounterStore()
+
+function acceptSettings () {
+    const checkedLevels = (toRaw(levelItems)).filter(item => item.checked)
+    const checkedThemes = (toRaw(themes)).filter(item => item.checked)
+
+    console.log(checkedThemes)
+}
+
+function clickNavigation(direction: 'prev' | 'next') {
+
+}
 
 </script>
 
@@ -64,13 +77,13 @@ const themes: Array<TItems> = reactive([
                 <SettingsItem :items="levelItems" text="Уровень:" />
                 <SettingsItem :items="themes" text="Тема:" />
             </div>
-            <BaseBtn />
+            <BaseBtn text="Применить" @on-click-btn="acceptSettings"/>
         </div>
         <div class="ask-block">
             <TheAskModal class="ask-block__modal" />
             <div class="ask-block__navigation">
-                <NavigationBtn />
-                <NavigationBtn />
+                <NavigationBtn @on-click-btn="clickNavigation('prev')"/>
+                <NavigationBtn @on-click-btn="clickNavigation('next')"/>
             </div>
 
         </div>
@@ -107,4 +120,4 @@ const themes: Array<TItems> = reactive([
             transform: rotate(180deg);
         }
     }
-}</style>
+}</style>@/types

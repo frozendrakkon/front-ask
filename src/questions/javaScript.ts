@@ -1,4 +1,4 @@
-import { ask } from "@/types/general"
+import { type ask } from "@/types"
 
 const jsAsk: Array<ask> = [
     {

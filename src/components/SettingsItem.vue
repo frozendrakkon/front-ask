@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TItems } from '@/types/general';
+import { TItem } from '@/types/index';
 import { PropType } from 'vue';
 
 defineProps({
@@ -8,17 +8,21 @@ defineProps({
         required: true
     },
     items: {
-        type: Object as PropType<Array<TItems>>,
+        type: Object as PropType<Array<TItem>>,
         required: true
     }
 })
+
+function clickItem(item: TItem) {
+    item.checked = !item.checked
+}
 
 </script>
 
 <template>
     <div class="settings-item">
         <span class="settings-item__text">{{ text }}</span>
-        <div v-for="(item, idx) in items" :key="idx" class="settings-item__checkbox">
+        <div v-for="(item, idx) in items" :key="idx" class="settings-item__checkbox" @click="clickItem(item)">
             <input type="checkbox">
             <span>{{ item.text }}</span>
         </div>
@@ -57,4 +61,4 @@ defineProps({
         }
     }
 }
-</style>
+</style>@/types

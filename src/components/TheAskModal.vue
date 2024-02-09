@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useQuestionsStore } from '@/store/questions';
+import { storeToRefs } from 'pinia'
+const store = useQuestionsStore()
+
+const {  currentAsk } = storeToRefs(store)
+
+</script>
+
+
 <template>
     <div class="ask-modal">
         <div class="ask-modal__header">
@@ -10,7 +20,7 @@
                 <img src="@/assets/images/star.svg">
             </div>
         </div>
-        <div class="ask">Как можно узнать, равно ли значение переменной NaN?</div>
+        <div class="ask">{{ currentAsk.ask }}</div>
     </div>
 </template>
 

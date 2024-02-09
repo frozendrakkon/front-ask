@@ -5,7 +5,7 @@ export type ask = {
     level: 1 | 2 | 3
 }
 
-export type TItems = {
+export type TItem = {
     text: string
     value: string
     checked: boolean
