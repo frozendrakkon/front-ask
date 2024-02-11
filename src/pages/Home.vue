@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, toRaw } from 'vue'
+import { computed, reactive } from 'vue'
 import defaultLayout from '@/layouts/defaultLayout.vue'
 import TheAskModal from '@/components/TheAskModal.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
@@ -85,6 +85,19 @@ function disabledNavigation(direction: 'prev' | 'next') {
 function disabledAccept() {
     return Boolean(!checkedLevels.value.length || !checkedThemes.value.length)
 }
+
+function addFavorite() {
+    const favorites = localStorage.getItem('favorites') || ''
+    
+    if (favorites) {
+        const parseFavorites =  JSON.parse(favorites);
+        parseFavorites.push(store.currentAsk)
+        localStorage.setItem('favorites', JSON.stringify(parseFavorites))
+        return
+    }
+
+    localStorage.setItem('favorites', JSON.stringify([store.currentAsk]))
+}
 </script>
 
 <template>
@@ -97,7 +110,7 @@ function disabledAccept() {
             <BaseBtn :disabled="disabledAccept()" text="Применить" @on-click-btn="acceptSettings" />
         </div>
         <div class="ask-block">
-            <TheAskModal class="ask-block__modal" />
+            <TheAskModal class="ask-block__modal" @addFavorite="addFavorite()" />
             <div class="ask-block__navigation">
                 <NavigationBtn :disabled="disabledNavigation('prev')" @on-click-btn="clickNavigation('prev')" />
                 <NavigationBtn :disabled="disabledNavigation('next')" @on-click-btn="clickNavigation('next')" />

@@ -1,7 +1,15 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+
+const countFavorite = computed(() => {
+    return JSON.parse(localStorage.getItem('favorites') || '').length || 0
+})
+</script>
+
 <template>
     <div class="header">
         <img class="header__logo" src="@/assets/images/logo.svg" />
-        <!-- <div class="header__favorite">Избранное <span>(5)</span></div> -->
+        <div class="header__favorite">Избранное <span>({{ countFavorite }})</span></div>
     </div>
 </template>
 

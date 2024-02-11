@@ -23,8 +23,7 @@ function clickItem(item: TLevel | TTheme) {
     <div class="settings-item">
         <span class="settings-item__text">{{ text }}</span>
         <div v-for="item in items" :key="item.value" class="settings-item__checkbox" @click="clickItem(item)">
-            <input type="checkbox">
-            <span>{{ item.text }}</span>
+            <input type="checkbox" :checked="item.checked"> {{ item.text }}
         </div>
     </div>
 </template>
@@ -48,10 +47,11 @@ function clickItem(item: TLevel | TTheme) {
         display: flex;
         align-items: center;
 
-        span {
-            font-family: 'Inter';
-            font-weight: 400;
-            margin-left: 10px;
+        font-family: 'Inter';
+        font-weight: 400;
+        margin-left: 10px;
+        @include hover {
+            cursor: pointer;
         }
 
         input[type='checkbox'] {

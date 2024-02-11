@@ -33,11 +33,9 @@ export const useQuestionsStore = defineStore('questions', {
             if (direction === 'next') {
                 this.currentAskIndex += 1
                 this.currentAsk = this.asks[this.currentAskIndex]
-                console.log(this.currentAsk, this.currentAskIndex, this.asks)
             } else {
                 this.currentAskIndex -= 1
                 this.currentAsk = this.asks[this.currentAskIndex]
-                console.log(this.currentAsk, this.currentAskIndex, this.asks)
             }
         },
         collectAsks(levels: TLevel[], themes: TTheme[]) {
