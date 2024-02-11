@@ -1,44 +1,64 @@
-import { defineStore } from "pinia"
-import { type TLevelValue, type TThemeValue, type ask } from "@/types";
+import { defineStore } from 'pinia'
+import { type TLevelValue, type ask, type TLevel, type TTheme } from '@/types'
 
-import codeAsk from "@/questions/code"
-import jsAsk from "@/questions/javaScript"
-import htmlAsk from "@/questions/html"
-import vueAsk from "@/questions/vue"
-
-import { getRandomNumber } from "@/utils";
+import codeAsk from '@/questions/code'
+import jsAsk from '@/questions/javaScript'
+import htmlAsk from '@/questions/html'
+import vueAsk from '@/questions/vue'
 
 interface IQuestionsState {
-    currentAsk: null | ask;
+    currentAsk: null | ask
     asks: Array<ask>
+    currentAskIndex: number
+    checkedSettings: {
+        levels: Array<TLevel>,
+        themes: Array<TTheme>
+    } | null
 }
+
+import shuffle from 'lodash.shuffle'
+import { getCheckedValues } from '@/utils'
 
 export const useQuestionsStore = defineStore('questions', {
     state: (): IQuestionsState => {
         return {
             currentAsk: null,
-            asks: []
+            asks: [],
+            currentAskIndex: -1,
+            checkedSettings: null
         }
     },
     actions: {
         changeCurrentAsk(direction: 'prev' | 'next') {
-            console.log('tut')
-            this.currentAsk = this.asks[getRandomNumber(this.asks.length)]
+            if (direction === 'next') {
+                this.currentAskIndex += 1
+                this.currentAsk = this.asks[this.currentAskIndex]
+                console.log(this.currentAsk, this.currentAskIndex, this.asks)
+            } else {
+                this.currentAskIndex -= 1
+                this.currentAsk = this.asks[this.currentAskIndex]
+                console.log(this.currentAsk, this.currentAskIndex, this.asks)
+            }
         },
-        collectAsks(levels: TLevelValue[], themes: TThemeValue[]) {
-            const allAsks = [
-                ...codeAsk,
-                ...jsAsk,
-                ...htmlAsk,
-                ...vueAsk,
-            ];
+        collectAsks(levels: TLevel[], themes: TTheme[]) {
 
-            this.asks = allAsks.filter((ask: ask) => {
-                const { theme, level } = ask
-                if ((themes).includes(theme) && levels.includes(String(level) as TLevelValue)) {
+            const themesCheckedValues = getCheckedValues(themes)
+            const levelsCheckedValues = getCheckedValues(levels)
 
-                }
-            })
+            const allAsks = [...codeAsk, ...jsAsk, ...htmlAsk, ...vueAsk]
+
+            this.asks = shuffle(
+                allAsks.filter((ask: ask) => {
+                    const { theme, level } = ask
+                    return (
+                        themesCheckedValues.includes(theme) &&
+                        levelsCheckedValues.includes(String(level) as TLevelValue)
+                    )
+                })
+            )
+
+            this.changeCurrentAsk('next')
+            this.checkedSettings = {levels, themes};
         }
     }
 })

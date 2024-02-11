@@ -22,7 +22,7 @@ function clickItem(item: TLevel | TTheme) {
 <template>
     <div class="settings-item">
         <span class="settings-item__text">{{ text }}</span>
-        <div v-for="(item, idx) in items" :key="idx" class="settings-item__checkbox" @click="clickItem(item)">
+        <div v-for="item in items" :key="item.value" class="settings-item__checkbox" @click="clickItem(item)">
             <input type="checkbox">
             <span>{{ item.text }}</span>
         </div>

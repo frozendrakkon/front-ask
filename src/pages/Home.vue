@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { reactive, toRaw } from 'vue'
+import { computed, reactive, toRaw } from 'vue'
 import defaultLayout from '@/layouts/defaultLayout.vue'
 import TheAskModal from '@/components/TheAskModal.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
 import BaseBtn from '@/components/BaseBtn.vue';
 import SettingsItem from '@/components/SettingsItem.vue'
-import { type TLevelValue, type TThemeValue, type TLevel, type TTheme } from '@/types/index';
+import { type TLevel, type TTheme } from '@/types/index';
 import { useQuestionsStore } from '@/store/questions'
 
 
@@ -33,7 +33,7 @@ const levels: TLevel[] = reactive([
 ])
 const themes: TTheme[] = reactive([
     {
-        text: 'HTML',
+        text: 'Html',
         value: 'html',
         checked: false,
         type: 'theme'
@@ -58,24 +58,33 @@ const themes: TTheme[] = reactive([
     }
 ])
 
-function getChecked(items: Array<TLevel | TTheme>): Array<TLevelValue | TThemeValue> {
-    return items.reduce((acc: Array<TLevelValue | TThemeValue>, item) => {
-        if (item.checked) acc.push(item.value)
-        return acc
-    }, [])
-}
+const checkedLevels = computed((): Array<TLevel> => {
+    return (levels.filter((level) => level.checked))
+})
+const checkedThemes = computed((): Array<TTheme> => {
+    return (themes.filter((theme) => theme.checked))
+})
 
-function acceptSettings() {
-    const checkedLevels = getChecked((toRaw(levels)))
-    const checkedThemes = getChecked((toRaw(themes)))
-
-    store.collectAsks(checkedLevels as TLevelValue[], checkedThemes as TThemeValue[])
+function acceptSettings(): void {
+    store.collectAsks(checkedLevels.value, checkedThemes.value)
 }
 
 function clickNavigation(direction: 'prev' | 'next') {
     store.changeCurrentAsk(direction)
 }
 
+function disabledNavigation(direction: 'prev' | 'next') {
+    const { currentAskIndex, asks } = store
+
+    if (direction === 'prev' && currentAskIndex === 0) return true
+    if (direction === 'next' && currentAskIndex === asks.length - 1) return true
+    if (currentAskIndex === -1) return true
+    return false
+}
+
+function disabledAccept() {
+    return Boolean(!checkedLevels.value.length || !checkedThemes.value.length)
+}
 </script>
 
 <template>
@@ -85,13 +94,13 @@ function clickNavigation(direction: 'prev' | 'next') {
                 <SettingsItem :items="levels" text="Уровень:" />
                 <SettingsItem :items="themes" text="Тема:" />
             </div>
-            <BaseBtn text="Применить" @on-click-btn="acceptSettings" />
+            <BaseBtn :disabled="disabledAccept()" text="Применить" @on-click-btn="acceptSettings" />
         </div>
         <div class="ask-block">
             <TheAskModal class="ask-block__modal" />
             <div class="ask-block__navigation">
-                <NavigationBtn @on-click-btn="clickNavigation('prev')" />
-                <NavigationBtn @on-click-btn="clickNavigation('next')" />
+                <NavigationBtn :disabled="disabledNavigation('prev')" @on-click-btn="clickNavigation('prev')" />
+                <NavigationBtn :disabled="disabledNavigation('next')" @on-click-btn="clickNavigation('next')" />
             </div>
 
         </div>

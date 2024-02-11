@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const emit = defineEmits(['onClickBtn'])
 defineProps({
-    text: { type: String, default: 'Применить' }
+    text: { type: String, default: 'Применить' },
+    disabled: { type: Boolean, required: true }
 })
 
 function onClickBtn() {
@@ -10,7 +11,7 @@ function onClickBtn() {
 </script>
 
 <template>
-    <button class="base-btn" @click="onClickBtn">{{ text }}</button>
+    <button :disabled="disabled" class="base-btn" @click="onClickBtn">{{ text }}</button>
 </template>
 
 <style lang="scss" scoped>
@@ -27,6 +28,10 @@ function onClickBtn() {
     @include hover {
         opacity: 0.8;
         cursor: pointer;
+    }
+    &:disabled {
+        cursor: default;
+        background-color: #ddd;
     }
 }
 </style>

@@ -82,47 +82,35 @@ const htmlAsk: Array<ask> = [
     {
         id: 14,
         theme: 'html',
-        ask: '',
+        ask: 'Flex свойства: direction, justify-content, shrink, grow, basis, wrap?',
         level: 1
     },
     {
         id: 15,
         theme: 'html',
-        ask: 'Flex свойства: direction, justify-content, shrink, grow, basis, wrap?',
+        ask: 'почему рекомендуется использовать transform и opacity при построении анимаций?',
         level: 1
     },
     {
         id: 16,
         theme: 'html',
-        ask: 'почему рекомендуется использовать transform и opacity при построении анимаций?',
-        level: 1
-    },
-    {
-        id: 17,
-        theme: 'html',
         ask: 'Загрузит ли браузер картинку, которая находится в блоке display none?',
         level: 3
     },
     {
-        id: 18,
+        id: 17,
         theme: 'html',
         ask: 'Что такое критический путь рендеринга? (CRP)',
         level: 3
     },
     {
-        id: 19,
-        theme: 'html',
-        ask: '',
-        level: 1
-    },
-    {
-        id: 20,
+        id: 18,
         theme: 'html',
         ask: 'http версии какие есть',
         level: 3
     },
     {
-        id: 21,
+        id: 19,
         theme: 'html',
         ask: 'Назовите методы HTTP, для чего они используются?',
         level: 2
