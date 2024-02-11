@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 
 const countFavorite = computed(() => {
-    return JSON.parse(localStorage.getItem('favorites') || '').length || 0
+    return JSON.parse(localStorage.getItem('favorites') || '[]')?.length || 0
 })
 </script>
 
