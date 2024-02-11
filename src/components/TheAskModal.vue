@@ -20,8 +20,8 @@ function clickAddFavorite() {
                 <div v-for="level in checkedSettings?.levels" class="about-task__level">{{ level.text }}</div>
             </div>
             <div class="favorite" @click="clickAddFavorite">
-                <span>В избранное</span>
-                <img src="@/assets/images/star.svg">
+                <!-- <span>В избранное</span> -->
+                <!-- <img src="@/assets/images/star.svg"> -->
             </div>
         </div>
         <div class="ask">{{ currentAsk?.ask || 'Выберите уровень и темы' }}</div>
