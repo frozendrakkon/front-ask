@@ -65,6 +65,9 @@ const checkedThemes = computed((): Array<TTheme> => {
     return (themes.filter((theme) => theme.checked))
 })
 
+const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+store.setCountFavorites(favorites.length)
+
 function acceptSettings(): void {
     store.collectAsks(checkedLevels.value, checkedThemes.value)
 }
@@ -87,15 +90,17 @@ function disabledAccept() {
 }
 
 function addFavorite() {
-    const favorites = localStorage.getItem('favorites') || ''
-    
-    if (favorites) {
-        const parseFavorites =  JSON.parse(favorites);
-        parseFavorites.push(store.currentAsk)
-        localStorage.setItem('favorites', JSON.stringify(parseFavorites))
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    if (favorites.length) {
+        favorites.push(store.currentAsk)
+        // https://stackoverflow.com/questions/39997067/es6-unique-array-of-objects-with-set
+        // @ts-ignore
+        const uniqFavorites = [...new Set(favorites.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+        localStorage.setItem('favorites', JSON.stringify(uniqFavorites))
+        store.setCountFavorites(uniqFavorites.length)
         return
     }
-
+    store.setCountFavorites(1)
     localStorage.setItem('favorites', JSON.stringify([store.currentAsk]))
 }
 </script>

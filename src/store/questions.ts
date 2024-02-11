@@ -10,6 +10,7 @@ interface IQuestionsState {
     currentAsk: null | ask
     asks: Array<ask>
     currentAskIndex: number
+    countFavorites: number
     checkedSettings: {
         levels: Array<TLevel>,
         themes: Array<TTheme>
@@ -25,7 +26,8 @@ export const useQuestionsStore = defineStore('questions', {
             currentAsk: null,
             asks: [],
             currentAskIndex: -1,
-            checkedSettings: null
+            checkedSettings: null,
+            countFavorites: 0
         }
     },
     actions: {
@@ -57,6 +59,9 @@ export const useQuestionsStore = defineStore('questions', {
 
             this.changeCurrentAsk('next')
             this.checkedSettings = {levels, themes};
+        },
+        setCountFavorites(num: number) {
+            this.countFavorites = num
         }
     }
 })

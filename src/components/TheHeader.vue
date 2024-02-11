@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { useQuestionsStore } from '@/store/questions';
 
-const countFavorite = computed(() => {
-    return JSON.parse(localStorage.getItem('favorites') || '[]')?.length || 0
-})
+const store = useQuestionsStore()
+
 </script>
 
 <template>
     <div class="header">
         <img class="header__logo" src="@/assets/images/logo.svg" />
-        <div class="header__favorite">Избранное <span>({{ countFavorite }})</span></div>
+        <div class="header__favorite">Избранное <span>({{ store.countFavorites }})</span></div>
     </div>
 </template>
 
