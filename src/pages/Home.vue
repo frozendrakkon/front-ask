@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed, Ref, ref } from 'vue'
 import defaultLayout from '@/layouts/defaultLayout.vue'
 import TheAskCard from '@/components/TheAskCard.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
 import BaseBtn from '@/components/BaseBtn.vue';
 import SettingsItem from '@/components/SettingsItem.vue'
-import { type TLevel, type TTheme } from '@/types/index';
+import { TAsk, type TLevel, type TTheme } from '@/types/index';
 import { useQuestionsStore } from '@/store/questions'
 
 
 const store = useQuestionsStore()
 
-const levels: TLevel[] = reactive([
+const levels: Ref<TLevel[]> = ref([
     {
         text: 'Junior',
         value: '1',
@@ -31,7 +31,7 @@ const levels: TLevel[] = reactive([
         type: 'level'
     }
 ])
-const themes: TTheme[] = reactive([
+const themes: Ref<TTheme[]> = ref([
     {
         text: 'Html',
         value: 'html',
@@ -59,10 +59,10 @@ const themes: TTheme[] = reactive([
 ])
 
 const checkedLevels = computed((): Array<TLevel> => {
-    return (levels.filter((level) => level.checked))
+    return (levels.value.filter((level) => level.checked))
 })
 const checkedThemes = computed((): Array<TTheme> => {
-    return (themes.filter((theme) => theme.checked))
+    return (themes.value.filter((theme) => theme.checked))
 })
 
 const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -103,6 +103,19 @@ function addFavorite() {
     store.setCountFavorites(1)
     localStorage.setItem('favorites', JSON.stringify([store.currentAsk]))
 }
+
+function deleteFavorite() {
+    const favorites: Array<TAsk> = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+    const deleteElIndex = favorites.findIndex((favorite) => {
+        return favorite.ask === store?.currentAsk?.ask
+    })
+
+    favorites.splice(deleteElIndex, 1)
+
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+    store.setCountFavorites(favorites.length)
+}
 </script>
 
 <template>
@@ -116,7 +129,7 @@ function addFavorite() {
         </div>
         <div class="ask-block">
             <TheAskCard class="ask-block__modal" :showAddFavorite="Boolean(store.currentAsk)" :ask="store?.currentAsk"
-                @addFavorite="addFavorite()" />
+                @addFavorite="addFavorite()" @deleteFavorite="deleteFavorite" />
             <div class="ask-block__navigation">
                 <NavigationBtn :disabled="disabledNavigation('prev')" @on-click-btn="clickNavigation('prev')" />
                 <NavigationBtn :disabled="disabledNavigation('next')" @on-click-btn="clickNavigation('next')" />

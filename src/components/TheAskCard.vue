@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { type TAsk } from '@/types';
-import { computed, PropType } from 'vue';
+import { computed, PropType, Ref, ref } from 'vue';
 import { levelToText } from '@/utils/index'
-import { reactive } from '@vue/runtime-dom';
+import { useQuestionsStore } from '@/store/questions';
 
-const favorites: Array<TAsk> = reactive(JSON.parse(localStorage.getItem('favorites') || '[]'));
 const emit = defineEmits(['addFavorite', 'deleteFavorite'])
+const store = useQuestionsStore()
 
 const props = defineProps({
     showAddFavorite: {
@@ -20,7 +20,6 @@ const props = defineProps({
 
 function addFavorite() {
     emit('addFavorite')
-    favorites.shift()
 }
 
 function deleteFavorite() {
@@ -28,21 +27,12 @@ function deleteFavorite() {
 }
 
 const isCardAlreadyAddFavorite = computed(() => {
-    return favorites.some((favorite) => {
+    const favorites: Ref<Array<TAsk>> = ref(JSON.parse(localStorage.getItem('favorites') || '[]'));
+    store.countFavorites
+
+    return favorites.value.some((favorite) => {
         return Object.is(JSON.stringify(favorite), JSON.stringify(props.ask))
     })
-})
-
-// 
-const name = reactive({name: 'Sergei'});
-
-function changeName() {
-    name.name = 'Roman'
-}
-
-const myName = computed(() => {
-    console.log(1)
-    return 'мое имя' + name.name
 })
 </script>
 
@@ -59,8 +49,6 @@ const myName = computed(() => {
                 <img src="@/assets/images/star.svg">
                 <!--  -->
             </div>
-            <span>{{ myName }}</span>
-            <button @click="changeName">Click</button>
         </div>
         <div class="ask">{{ ask?.ask || 'Выберите уровень и темы' }}</div>
     </div>
