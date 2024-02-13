@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type TAsk } from '@/types';
-import { computed, PropType, watch } from 'vue';
+import { computed, PropType } from 'vue';
 import { levelToText } from '@/utils/index'
 import { reactive } from '@vue/runtime-dom';
 
@@ -27,18 +27,24 @@ function deleteFavorite() {
     emit('deleteFavorite')
 }
 
-watch(favorites, () => {
-    console.log('watch отработал')
-})
-
 const isCardAlreadyAddFavorite = computed(() => {
-    console.log('suka bly')
     return favorites.some((favorite) => {
         return Object.is(JSON.stringify(favorite), JSON.stringify(props.ask))
     })
 })
-</script>
 
+// 
+const name = reactive({name: 'Sergei'});
+
+function changeName() {
+    name.name = 'Roman'
+}
+
+const myName = computed(() => {
+    console.log(1)
+    return 'мое имя' + name.name
+})
+</script>
 
 <template>
     <div class="ask-modal">
@@ -51,7 +57,10 @@ const isCardAlreadyAddFavorite = computed(() => {
                 <span v-if="isCardAlreadyAddFavorite" @click="deleteFavorite">Удалить из избранного</span>
                 <span v-else @click="addFavorite()">В избранное</span>
                 <img src="@/assets/images/star.svg">
+                <!--  -->
             </div>
+            <span>{{ myName }}</span>
+            <button @click="changeName">Click</button>
         </div>
         <div class="ask">{{ ask?.ask || 'Выберите уровень и темы' }}</div>
     </div>
