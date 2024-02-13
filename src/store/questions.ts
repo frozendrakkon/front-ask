@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { type TLevelValue, type ask, type TLevel, type TTheme } from '@/types'
+import { type TLevelValue, type TAsk, type TLevel, type TTheme } from '@/types'
 
 import codeAsk from '@/questions/code'
 import jsAsk from '@/questions/javaScript'
@@ -7,8 +7,8 @@ import htmlAsk from '@/questions/html'
 import vueAsk from '@/questions/vue'
 
 interface IQuestionsState {
-    currentAsk: null | ask
-    asks: Array<ask>
+    currentAsk: null | TAsk
+    asks: Array<TAsk>
     currentAskIndex: number
     countFavorites: number
     checkedSettings: {
@@ -48,7 +48,7 @@ export const useQuestionsStore = defineStore('questions', {
             const allAsks = [...codeAsk, ...jsAsk, ...htmlAsk, ...vueAsk]
 
             this.asks = shuffle(
-                allAsks.filter((ask: ask) => {
+                allAsks.filter((ask: TAsk) => {
                     const { theme, level } = ask
                     return (
                         themesCheckedValues.includes(theme) &&

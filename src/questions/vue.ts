@@ -1,6 +1,6 @@
-import { type ask } from "@/types"
+import { type TAsk } from "@/types"
 
-const vueAsk: Array<ask> = [
+const vueAsk: Array<TAsk> = [
     {
         id: 1,
         theme: 'vue',

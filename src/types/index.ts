@@ -1,4 +1,4 @@
-export type ask = {
+export type TAsk = {
     id: number
     ask: string
     theme: 'js' | 'html' | 'code' | 'hr' | 'vue' | 'ts',

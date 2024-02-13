@@ -1,6 +1,6 @@
-import { type ask } from "@/types"
+import { type TAsk } from "@/types"
 
-const htmlAsk: Array<ask> = [
+const htmlAsk: Array<TAsk> = [
     {
         id: 1,
         theme: 'html',

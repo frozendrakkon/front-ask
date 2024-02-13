@@ -6,3 +6,17 @@ export function getCheckedValues(items: Array<TLevel | TTheme>) {
         return acc
     }, [])
 }
+
+export function levelToText (level: 1 | 2 | 3 ) {
+    switch (level) {
+        case 1:
+            return 'junior';
+        case 2:
+            return 'middle';
+        case 3:
+            return 'senior';
+        default:
+            return ''
+        
+    }
+}

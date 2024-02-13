@@ -2,7 +2,7 @@
 const emit = defineEmits(['onClickBtn'])
 defineProps({
     text: { type: String, default: 'Применить' },
-    disabled: { type: Boolean, required: true }
+    disabled: { type: Boolean, required: false }
 })
 
 function onClickBtn() {

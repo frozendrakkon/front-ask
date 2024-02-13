@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import defaultLayout from '@/layouts/defaultLayout.vue'
-import TheAskModal from '@/components/TheAskModal.vue';
+import TheAskCard from '@/components/TheAskCard.vue';
 import NavigationBtn from '@/components/NavigationBtn.vue';
 import BaseBtn from '@/components/BaseBtn.vue';
 import SettingsItem from '@/components/SettingsItem.vue'
@@ -115,7 +115,8 @@ function addFavorite() {
             <BaseBtn :disabled="disabledAccept()" text="Применить" @on-click-btn="acceptSettings" />
         </div>
         <div class="ask-block">
-            <TheAskModal class="ask-block__modal" @addFavorite="addFavorite()" />
+            <TheAskCard class="ask-block__modal" :showAddFavorite="Boolean(store.currentAsk)" :ask="store?.currentAsk"
+                @addFavorite="addFavorite()" />
             <div class="ask-block__navigation">
                 <NavigationBtn :disabled="disabledNavigation('prev')" @on-click-btn="clickNavigation('prev')" />
                 <NavigationBtn :disabled="disabledNavigation('next')" @on-click-btn="clickNavigation('next')" />

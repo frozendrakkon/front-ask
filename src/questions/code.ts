@@ -1,7 +1,7 @@
-import { type ask } from "@/types/index";
+import { type TAsk } from "@/types/index";
 
 
-export const codeAsk: Array<ask> = [
+export const codeAsk: Array<TAsk> = [
     {
         id: 1,
         theme: 'code',

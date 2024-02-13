@@ -7,8 +7,12 @@ const store = useQuestionsStore()
 
 <template>
     <div class="header">
-        <img class="header__logo" src="@/assets/images/logo.svg" />
-        <div class="header__favorite">Избранное <span>({{ store.countFavorites }})</span></div>
+        <router-link to="/">
+            <img class="header__logo" src="@/assets/images/logo.svg" />
+        </router-link>
+        <router-link to="/favorites">
+            <div class="header__favorite">Избранное <span>({{ store.countFavorites }})</span></div>
+        </router-link>
     </div>
 </template>
 
@@ -16,6 +20,10 @@ const store = useQuestionsStore()
 .header {
     display: flex;
     justify-content: space-between;
+
+    a {
+        text-decoration: none;
+    }
 
     &__favorite {
         font-family: 'Inter';
